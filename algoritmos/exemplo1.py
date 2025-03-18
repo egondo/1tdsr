@@ -5,7 +5,6 @@ num1 = int(dado)
 
 dado = input("Informe o número: ")
 num2 = int(dado)
-
 dado = input("Informe o número: ")
 num3 = int(dado)
 
