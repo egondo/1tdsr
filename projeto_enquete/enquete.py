@@ -40,6 +40,20 @@ def exibe_perguntas(repositorio: list):
         i = i + 4
     print("**********************************")
 
+def aplica_perguntas(repositorio: list, respostas: list):
+    i = 0 
+    print("**********************************")
+    while i < len(repositorio):
+        quest = repositorio[i: i+4]
+        info = monta_pergunta(quest)
+        print(info)
+        print("")
+        resp = input("Resp: ")
+        respostas.append(resp)
+        i = i + 4
+    print("**********************************")
+
+
 def menu() -> int:
     print("1) Cadastra Pergunta")
     print("2) Aplica enquete")
@@ -70,14 +84,17 @@ perguntas = [1, "Qual time vc torce?", 'aberta', None,
              3, "Melhor jogador?", 'multipla', ['Raphinha', 'Mbappe', 
                                                'Vini Jr', 'Yamal']]
 opcao = 0
+respostas = []
+
 while opcao != 5:
     opcao = menu()
     if opcao == 1:
         cadastra_pergunta(perguntas)
 
     elif opcao == 2:
-        print("aplicando a enquete")
-
+        aplica_perguntas(perguntas, respostas)
+        print(respostas)
+                        
     elif opcao == 3:
         exibe_perguntas(perguntas)
 
