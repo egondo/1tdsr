@@ -19,8 +19,29 @@ def cadastra_pergunta(repositorio: list):
     repositorio.append(tipo)
     repositorio.append(alternativas)
 
+def monta_pergunta(quest: list) -> str:
+    resp = f"{quest[0]}) {quest[1]} "
+    if quest[2] != 'aberta':
+        op = "abcdefghijklmnopqrst"
+        i = 0
+        for alt in quest[3]:
+            resp = resp + f"\n  {op[i]}) {alt}"
+            i = i + 1
+    return resp
+
+def exibe_perguntas(repositorio: list):
+    i = 0
+    print("**********************************")
+    while i < len(repositorio):
+        quest = repositorio[i: i+4]
+        info = monta_pergunta(quest)
+        print(info)
+        print("")
+        i = i + 4
+    print("**********************************")
+
 def menu() -> int:
-    print("1) Cadasta Pergunta")
+    print("1) Cadastra Pergunta")
     print("2) Aplica enquete")
     print("3) Visualiza perguntas")
     print("4) Apaga pergunta")
@@ -44,17 +65,24 @@ def apaga_pergunta(repositorio):
 
 
 #main
-perguntas = []
+perguntas = [1, "Qual time vc torce?", 'aberta', None,
+             2, "Quem vai ganhar a Champions?", 'unica', ['PSG', 'Inter'],
+             3, "Melhor jogador?", 'multipla', ['Raphinha', 'Mbappe', 
+                                               'Vini Jr', 'Yamal']]
 opcao = 0
 while opcao != 5:
     opcao = menu()
     if opcao == 1:
         cadastra_pergunta(perguntas)
+
     elif opcao == 2:
         print("aplicando a enquete")
+
     elif opcao == 3:
-        print(perguntas)
+        exibe_perguntas(perguntas)
+
     elif opcao == 4:
         apaga_pergunta(perguntas)
+
     elif opcao != 5:
         print("Opção inválida")
