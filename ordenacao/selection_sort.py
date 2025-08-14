@@ -9,15 +9,20 @@ def menor(v: list, i: int) -> int:
 
 def sort(lista: list):
 
-    ind = menor(lista, 0)
-    aux = lista[0]
-    lista[0] = lista[ind]
-    lista[ind] = aux
+    #ind = menor(lista, 0)
+    #aux = lista[0]
+    #lista[0] = lista[ind]
+    #lista[ind] = aux
 
-    ind = menor(lista, 1)
-    aux = lista[1]
-    lista[1] = lista[ind]
-    lista[ind] = aux
+    #ind = menor(lista, 1)
+    #aux = lista[1]
+    #lista[1] = lista[ind]
+    #lista[ind] = aux
+    for i in range(len(lista) - 1):
+        ind = menor(lista, i)
+        aux = lista[i]
+        lista[i] = lista[ind]
+        lista[ind] = aux
 
 if __name__ == "__main__":
     lst = [5, 4, -2, 10, 7, 40]
