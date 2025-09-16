@@ -1,4 +1,5 @@
 import Imagem
+import rotacao_imagem as ri
 
 #Gere uma borda mais escura nos retangulos que representam
 #os valores do histograma.
@@ -7,7 +8,10 @@ def cria_retangulo(imagem: list, altura: int, col: int):
     cor = 150
     for i in range(altura):
         for j in range(50):
-            imagem[i + 20][j + col] = cor
+            if i == 0 or i == altura - 1 or j == 0 or j == 49:
+                imagem[i + 20][j + col] = 0
+            else:
+                imagem[i + 20][j + col] = cor
 
 
 imagem = []
@@ -19,6 +23,10 @@ delta = 60
 for valor in valores:
     cria_retangulo(imagem, valor * 2, inicio)
     inicio = inicio + delta
+
+resp = ri.gira90(imagem)
+resp = ri.gira90(resp)
+Imagem.salvaImagemCinza("histo_rotacionado.png", resp)
 
 lin_ini = 0
 lin_fin = len(imagem) - 1
