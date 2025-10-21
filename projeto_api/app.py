@@ -14,4 +14,21 @@ def get_card():
     }
     return cartao, 200
 
+
+@app.route("/enderecos", methods=['GET'])
+def get_adress() -> list:
+    lista = [
+        {
+            "logradouro": "Av Paulista",
+            "numero": 1106,
+            "bairro": "Bela Vista"
+        },
+        {
+            "logradouro": "Av Lins de Vasconcelos",
+            "numero": 1222,
+            "bairro": "Aclimação"
+        }
+    ]
+    return lista, 200
+
 app.run(debug=True)
