@@ -1,7 +1,12 @@
 from flask import Flask, jsonify, request
+import banco
 
 #app = Flask(__name__)
 app = Flask("Projeto API Render")
+
+@app.route("/carros", methods=["GET"])
+def get_carros():
+    return banco.consulta_carros(), 200
 
 @app.route("/cartao", methods=['GET'])
 def get_card():
