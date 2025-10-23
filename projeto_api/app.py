@@ -11,6 +11,17 @@ CORS(app, origins="*")
 def get_carros():
     return banco.consulta_carros(), 200
 
+@app.route("/cartao", methods=['POST'])
+@cross_origin()
+def update_cartao():
+    dados = request.json
+    resposta = {
+        "mensagem": "Cartão atualizado com sucesso!",
+        "cartao_atualizado": dados
+    }
+    return jsonify(resposta), 200
+
+
 @app.route("/cartao", methods=['GET'])
 @cross_origin()
 def get_card():

@@ -81,20 +81,59 @@
         </div>
 
         <div>
-            <button type="submit">Enviar Registro</button>
+            <button type="submit" id="botao">Enviar Registro</button>
         </div>
     </form>
 </div>
 <script>
-    //url = "https://fiap-tdsr.onrender.com/cartao"
-    url = "http://127.0.0.1:5000/cartao"
+    url = "https://fiap-tdsr.onrender.com/cartao"
+    //url = "http://127.0.0.1:5000/cartao"
 
     fetch(url)
         .then(response => response.json())
-        .then(data => console.log(data)).
+        .then(data => {
+            console.log(data)
+            document.getElementById("nome").value = data.nome
+            document.getElementById("email").value = data.email
+            document.getElementById("telefone").value = data.telefone
+            document.getElementById("cargo").value = data.cargo
+            document.getElementById("departamento").value = data.departamento
+        }).
     catch(error => console.error('Error:', error));
 
+    botao = document.getElementById("botao")
+    botao.onclick = function(event){
+        event.preventDefault()
+        nome = document.getElementById("nome").value
+        email = document.getElementById("email").value
+        telefone = document.getElementById("telefone").value
+        cargo = document.getElementById("cargo").value
+        departamento = document.getElementById("departamento").value
 
+        data = {
+            "nome": nome,
+            "email": email,
+            "telefone": telefone,
+            "cargo": cargo,
+            "departamento": departamento
+        }
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            alert("Registro enviado com sucesso!")
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
 </script>
 </body>
 </html>
