@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Contato/Registro</title>
+    <style>
+        /* Opcional: Estilos básicos para melhor visualização */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Garante que padding e border não aumentem a largura total */
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Registro de Funcionário</h2>
+    <form action="#" method="POST">
+        <div>
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+
+        <div>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div>
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" pattern="[0-9]{2}[0-9]{4,5}[0-9]{4}" placeholder="Ex: 99999999999" title="Informe um telefone válido com DDD (apenas números)" required>
+            <small>Formato: Apenas números, com DDD.</small>
+        </div>
+
+        <div>
+            <label for="cargo">Cargo:</label>
+            <input type="text" id="cargo" name="cargo" required>
+        </div>
+
+        <div>
+            <label for="departamento">Departamento:</label>
+            <input type="text" id="departamento" name="departamento" required>
+        </div>
+
+        <div>
+            <button type="submit">Enviar Registro</button>
+        </div>
+    </form>
+</div>
+<script>
+    //url = "https://fiap-tdsr.onrender.com/cartao"
+    url = "http://127.0.0.1:5000/cartao"
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => console.log(data)).
+    catch(error => console.error('Error:', error));
+
+
+</script>
+</body>
+</html>

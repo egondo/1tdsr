@@ -1,14 +1,18 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS, cross_origin
 import banco
 
 #app = Flask(__name__)
 app = Flask("Projeto API Render")
+CORS(app, origins="*")
 
 @app.route("/carros", methods=["GET"])
+@cross_origin()
 def get_carros():
     return banco.consulta_carros(), 200
 
 @app.route("/cartao", methods=['GET'])
+@cross_origin()
 def get_card():
     cartao = {
         "nome": "José Carlos",
