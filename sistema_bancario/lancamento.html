@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <p>
+            <label>conta: </label>
+            <select id="conta" name="conta">
+                <option value=""></option>
+            </select>
+        </p>
+         <p>
+            <label>tipo: </label>
+            <select id="tipo" name="tipo">
+                <option value=""></option>
+                <option value="">PIX</option>
+                <option value="">boleto</option>
+                <option value="">vencimento</option>
+                <option value="">saque</option>
+            </select>
+        </p>
+        <p>
+            <label>valor: </label>
+            <input id="valor" type="text" />
+        </p>
+        <p>
+            <label>observação: </label>
+            <input id="observacao" type="text" />
+        </p>
+        <p><input type="button" id="botao" value="inclui"/></p>
+    </form>
+    <script>
+        //chamar a API que retorna uma lista de contas, exibe o resultado na caixa de seleção do formulario acima.
+        obj = document.getElementById("conta")
+        url = "http://127.0.0.1:5000/contas"
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                for (info of data) {
+                    var option = new Option(info.cliente + " " + info.numero, info.id)
+                    obj.add(option)
+                }
+            })
+    </script>
+</body>
+</html>
