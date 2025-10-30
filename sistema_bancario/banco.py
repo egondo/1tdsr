@@ -11,7 +11,7 @@ def recupera_contas() -> list:
 
             cur.execute(sql)
             resultados = cur.fetchall()
-            return resultados
+    return resultados
 
 def insere_lancamento(lancamento: dict):
     with get_conexao() as con:
@@ -20,6 +20,17 @@ def insere_lancamento(lancamento: dict):
 
             cur.execute(sql, lancamento)
         con.commit()
+
+def recupera_lancamentos(conta_id) -> list:
+    with get_conexao() as con:
+        with con.cursor() as cur:   
+            sql = "SELECT tipo, data, observacao, valor FROM tr_lancamento WHERE conta_id= :conta_id ORDER BY data DESC"
+
+            param = {"conta_id": conta_id}
+            cur.execute(sql, param)
+            
+            resultados = cur.fetchall()
+    return resultados
 
 
 def atualiza_saldo(info: dict):
